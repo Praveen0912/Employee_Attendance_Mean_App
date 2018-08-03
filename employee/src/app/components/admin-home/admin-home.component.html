@@ -1,0 +1,88 @@
+<app-navbar></app-navbar>
+<div class="row">
+ <div class="col-md-2 text-center" style="background-color: #343a40!important;">
+  <ul class="sidebar navbar-nav"   style="font-size: 15px"> 
+    <li class="nav-item">
+            <a class="nav-link text-white" >
+              <span>Welcome Admin</span>
+            </a>
+    </li>
+
+    <li class="nav-item">
+            <a class="nav-link text-white" >
+              <span>{{ adminPostData.name }}</span>
+            </a>
+    </li>
+    <li class="nav-item">
+            <a class="nav-link text-white" >
+              <span>{{ adminPostData.email }}</span>
+            </a>
+    </li>
+    <br>
+    <li class="nav-item">
+            <button class="text-white"  routerLink="/newEmployee" style="background-color: #343a40!important;">Register New Employee</button>  
+    </li>
+    <br>
+    <li class="nav-item">
+          <button class="text-white" (click)="logout()" style="background-color: #343a40!important;">Logout</button>
+    </li>
+  </ul>
+
+</div> 
+
+<div class="col-md-10">       
+            <div class="well">
+                    <div class="card mb-4">
+                            <div class="card-header text-center text-white" style="background-color: #343a40!important;">
+                              <i class="fas fa-table"></i>
+                              <h4>Employee List</h4>
+                    </div>
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                  <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Email</th>
+                                      <th>Date of Birth</th>
+                                      <th>Address</th>
+                                      <th>Phone</th>
+                                      <th>Actions</th>
+                                    </tr>
+                                  </thead>
+                                  <tfoot>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Email</th>
+                                      <th>Date of Birth</th>
+                                      <th>Address</th>
+                                      <th>Phone</th>
+                                      <th>Actions</th>
+                                    </tr>
+                                  </tfoot>
+                                  
+                                  <tbody>
+                                    <tr *ngFor="let employee of employees">
+                                      <td><br>{{ employee.name }}</td>
+                                      <td><br>{{ employee.email }}</td>
+                                      <td><br>{{ employee.dob }}</td>
+                                      <td><br>{{ employee.address }}</td>
+                                      <td><br>{{ employee.phone }}</td>
+                                      <td>
+                                          <button class="btn btn-success btn-sm btn-block" (click)="onViewClick(employee.empid)">View attendance</button>
+                                          <button class="btn btn-primary btn-sm btn-block" (click)="onEditClick(employee)">Edit</button> 
+                                          <button class="btn btn-danger btn-sm btn-block" (click)="onDeleteClick(employee._id)">Delete</button>
+                                     </td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                        </div>
+                        </div>
+                        </div>
+                
+                
+            </div>
+        
+        </div>
+     
+</div>

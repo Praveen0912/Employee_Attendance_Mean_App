@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="container text-center">
+    <h6 class="text-center">Welcome,{{ employeePostData.name }}</h6>
+    <div class="well">
+        <ul class="list-group">
+            <li class="list-group-item text-center"><b>Name:</b> {{ employeePostData.name }}</li>
+            <li class="list-group-item text-center"><b>Date of Birth:</b> {{ employeePostData.dob }}</li>
+            <li class="list-group-item text-center"><b>Email:</b> {{ employeePostData.email }}</li>
+            <li class="list-group-item text-center"><b>Phone:</b> {{ employeePostData.phone }}</li>
+            <li class="list-group-item text-center"><b>Address:</b> {{ employeePostData.address }}</li>
+            
+        </ul>
+     </div> 
+     <br>
+     <button class="btn btn-success" (click)="onEditClick(employee)">Edit</button>
+     <button class="btn btn-success" (click)="onView(employee)">View Past Attendance</button>
+     <button class="btn btn-danger" (click)="logout()">Logout</button>
+     <br><br>
+        <h4>Mark Your Today Attendance</h4>
+        <br>
+        <button class="btn btn-success" (click)="onMark(employee)">Mark Checkin</button>
+        <button class="btn btn-success" (click)="onMark(employee)">Mark Checkout</button>
+    
+</div>
