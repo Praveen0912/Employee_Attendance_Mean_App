@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="row">
  <div class="col-md-2 text-center" style="background-color: #343a40!important;">
-  <ul class="sidebar navbar-nav"   style="font-size: 15px"> 
+  <ul class="sidebar navbar-nav"   style="font-size: 12px"> 
     <li class="nav-item">
             <a class="nav-link text-white" >
               <span>Welcome Admin</span>
@@ -20,11 +20,11 @@
     </li>
     <br>
     <li class="nav-item">
-            <button class="text-white"  routerLink="/newEmployee" style="background-color: #343a40!important;">Register New Employee</button>  
+            <button class="btn btn-info btn-sm"  routerLink="/newEmployee">Register New Employee</button>  
     </li>
     <br>
     <li class="nav-item">
-          <button class="text-white" (click)="logout()" style="background-color: #343a40!important;">Logout</button>
+        <button class="btn btn-danger btn-sm" (click)="logout()">Logout</button>
     </li>
   </ul>
 
@@ -63,15 +63,16 @@
                                   
                                   <tbody>
                                     <tr *ngFor="let employee of employees">
-                                      <td><br>{{ employee.name }}</td>
+                                      <td><br>{{ employee.fname }} {{ employee.lname }}</td>
                                       <td><br>{{ employee.email }}</td>
                                       <td><br>{{ employee.dob }}</td>
                                       <td><br>{{ employee.address }}</td>
                                       <td><br>{{ employee.phone }}</td>
                                       <td>
-                                          <button class="btn btn-success btn-sm btn-block" (click)="onViewClick(employee.empid)">View attendance</button>
-                                          <button class="btn btn-primary btn-sm btn-block" (click)="onEditClick(employee)">Edit</button> 
-                                          <button class="btn btn-danger btn-sm btn-block" (click)="onDeleteClick(employee._id)">Delete</button>
+                                          <button class="btn btn-warning btn-sm btn-block" (click)="onDeleteClick(employee._id)">Delete</button>
+                                          <button class="btn btn-secondary btn-sm btn-block" (click)="onViewClick(employee.empid)">View attendance</button>
+                                          <button class="btn btn-success btn-sm btn-block" (click)="onEditClick(employee)">Edit</button> 
+                                          
                                      </td>
                                     </tr>
                                   </tbody>

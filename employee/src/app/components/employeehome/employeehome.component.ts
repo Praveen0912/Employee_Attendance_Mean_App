@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
 })
 export class EmployeehomeComponent implements OnInit {
   employeePostData = {
-    "id": "",
-    "name": "",
-    "dob": "",
-    "email": "",
-    "phone": "",
-    "address": ""                                         
+    id: "",
+    lname: "",
+    fname:"",
+    dob: "",
+    email: "",
+    phone: "",
+    address: ""                                         
   };
   constructor(private dataService: DataService, private router: Router) {
     const token = JSON.parse(localStorage.getItem('isEmployee'));
@@ -23,7 +24,7 @@ export class EmployeehomeComponent implements OnInit {
     }
     
     this.dataService.checkEmployeeLoggedIn(token.data).subscribe(employeeDetails=>{
-      this.employeePostData = employeeDetails; 
+      this.employeePostData = employeeDetails;
     });
   
   }

@@ -58,6 +58,16 @@ export class DataService {
       return this.http.post(apiUrl,employee, { headers:headers } )
       .pipe(map((response: any) =>  response.json()));
     }
+
+    updateEmployee(employee, token): Observable<any> {
+      var apiUrl ='http://localhost:3000/api/employee_update'; 
+      const headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer '+token
+      });
+      return this.http.post(apiUrl,employee, { headers:headers } )
+      .pipe(map((response: any) =>  response.json()));
+    }
    
     //employee works
     loginEmployee(employee){

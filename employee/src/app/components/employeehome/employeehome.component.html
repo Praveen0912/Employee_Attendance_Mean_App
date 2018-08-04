@@ -1,9 +1,9 @@
 <app-navbar></app-navbar>
 <div class="container text-center">
-    <h6 class="text-center">Welcome,{{ employeePostData.name }}</h6>
+    <h6 class="text-center">Welcome,{{ employeePostData.fname }}{{ employeePostData.lname }}</h6>
     <div class="well">
         <ul class="list-group">
-            <li class="list-group-item text-center"><b>Name:</b> {{ employeePostData.name }}</li>
+            <li class="list-group-item text-center"><b>Name:</b>{{ employeePostData.fname }} {{ employeePostData.lname }}</li>
             <li class="list-group-item text-center"><b>Date of Birth:</b> {{ employeePostData.dob }}</li>
             <li class="list-group-item text-center"><b>Email:</b> {{ employeePostData.email }}</li>
             <li class="list-group-item text-center"><b>Phone:</b> {{ employeePostData.phone }}</li>

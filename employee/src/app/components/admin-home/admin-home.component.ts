@@ -23,6 +23,7 @@ export class AdminHomeComponent implements OnInit {
     }
     this.dataService.checkAdminLoggedIn(token.data).subscribe(employees=>{
       this.employees = employees;
+      console.log(this.employees);
     });
 
     this.dataService.getAdminDetails(token.data).subscribe(adminDetails=>{
@@ -61,6 +62,7 @@ export class AdminHomeComponent implements OnInit {
   }
   
   onEditClick(employee){
-    console.log(employee);
+    localStorage.setItem('isEditEmployee',JSON.stringify(employee));
+    this.router.navigateByUrl('/editEmployee'); 
   }
 }

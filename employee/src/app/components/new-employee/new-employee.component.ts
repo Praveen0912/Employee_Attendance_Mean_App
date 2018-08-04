@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 export class NewEmployeeComponent implements OnInit {
   employee={
     email:'',
-    name:'',
+    fname:'',
+    lname:'',
     dob:'',
     address:'',
     phone:'',
@@ -29,15 +30,20 @@ export class NewEmployeeComponent implements OnInit {
   }
   
   onSubmit(){
-    var cpass = this.temp.password;
-    if(this.employee.password == cpass){
-      const token = JSON.parse(localStorage.getItem('isAdmin'));
-      this.dataService.addEmployee(this.employee, token.data).subscribe(employee =>{
-        this.router.navigateByUrl('/adminHome');
-      });
-    }
+    if(this.employee.fname !='' && this.employee.lname !='' && this.employee.email !='' && this.employee.dob !='' && this.employee.address !='' && this.employee.password !='' && this.employee.phone !='' && this.temp.password !=''){
+        var cpass = this.temp.password;
+        if(this.employee.password == cpass){
+          const token = JSON.parse(localStorage.getItem('isAdmin'));
+          this.dataService.addEmployee(this.employee, token.data).subscribe(employee =>{
+            this.router.navigateByUrl('/adminHome');
+          });
+        }
+        else{
+          alert("mismatch confirm password");
+        }
+    } 
     else{
-      alert("mismatch confirm password");
-    }
+      alert("Please Fill All Credentials First");
+    }   
   }
 }

@@ -2,9 +2,9 @@
 <div class="container">
         <div class="col-md-12 col-md-offset-3" style="margin: auto">
           <div class="card card-login mx-auto mt-5">
-            <h4 class="card-header text-center text-white" style="background-color: #343a40!important;">New Employee Registration</h4>
+            <h4 class="card-header text-center text-white" style="background-color: #343a40!important;">Update Employee</h4>
               <div class="card-body">
-                    <form (submit)="onSubmit()" class="text-center">
+                    <form (submit)="onUpdate()" class="text-center">
                      <div class="row">
                        <div class="col-md-1"></div>   
                        <div class="col-md-4"> 
@@ -60,7 +60,7 @@
                        <div class="col-md-1"></div> 
                        <div class="col-md-4">
                         <div class="form-group">
-                            <label><b>Password</b></label>
+                            <label><b>Set New Password</b></label>
                             <input class="form-control" type="password" [(ngModel)]="employee.password" name="password" required>
                         </div>
                        </div>
@@ -73,7 +73,7 @@
                        </div>
                        <div class="col-md-1"></div>
                     </div>   
-                        <input type="submit" class="btn text-white" style="background-color: #563d7c;" value="Submit">
+                        <input type="submit" class="btn text-white" style="background-color: #563d7c;" value="Update">
                     
                     </form>
             </div>

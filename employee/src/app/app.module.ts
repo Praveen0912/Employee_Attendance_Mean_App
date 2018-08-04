@@ -13,11 +13,13 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { NewEmployeeComponent } from './components/new-employee/new-employee.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { EmployeehomeComponent } from './components/employeehome/employeehome.component';
+import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
 
 const appRoutes: Routes = [
   {path:'', component:DashboardComponent},
   {path:'admin', component:AdminloginComponent},
   {path:'adminHome',component:AdminHomeComponent},
+  {path:'editEmployee',component:EmployeeEditComponent},
   {path:'employee', component:EmployeeloginComponent},
   {path:'employeeHome',component:EmployeehomeComponent},
   {path:'newEmployee',component:NewEmployeeComponent},
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
     NewEmployeeComponent,
     PageNotFoundComponent,
     EmployeehomeComponent,
+    EmployeeEditComponent,
    
   ],
   imports: [
