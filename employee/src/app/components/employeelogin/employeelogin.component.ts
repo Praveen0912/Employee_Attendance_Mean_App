@@ -16,7 +16,7 @@ export class EmployeeloginComponent implements OnInit {
   constructor(private dataService:DataService, private router:Router) { 
     const data = JSON.parse(localStorage.getItem('isEmployee'));
     if(data != null){
-      this.router.navigateByUrl('/adminHome');
+      this.router.navigateByUrl('/employeeHome');
     }
   }
 
@@ -36,7 +36,7 @@ export class EmployeeloginComponent implements OnInit {
           alert("Wrong Password");
           
         }
-      
+
         if(this.token != undefined){
          var employeeLink = {
            "visibility":"hidden"

@@ -1,24 +1,116 @@
 <app-navbar></app-navbar>
-<div class="container text-center">
-    <h6 class="text-center">Welcome,{{ employeePostData.fname }}{{ employeePostData.lname }}</h6>
-    <div class="well">
-        <ul class="list-group">
-            <li class="list-group-item text-center"><b>Name:</b>{{ employeePostData.fname }} {{ employeePostData.lname }}</li>
-            <li class="list-group-item text-center"><b>Date of Birth:</b> {{ employeePostData.dob }}</li>
-            <li class="list-group-item text-center"><b>Email:</b> {{ employeePostData.email }}</li>
-            <li class="list-group-item text-center"><b>Phone:</b> {{ employeePostData.phone }}</li>
-            <li class="list-group-item text-center"><b>Address:</b> {{ employeePostData.address }}</li>
-            
-        </ul>
-     </div> 
-     <br>
-     <button class="btn btn-success" (click)="onEditClick(employee)">Edit</button>
-     <button class="btn btn-success" (click)="onView(employee)">View Past Attendance</button>
-     <button class="btn btn-danger" (click)="logout()">Logout</button>
-     <br><br>
-        <h4>Mark Your Today Attendance</h4>
-        <br>
-        <button class="btn btn-success" (click)="onMark(employee)">Mark Checkin</button>
-        <button class="btn btn-success" (click)="onMark(employee)">Mark Checkout</button>
-    
+<div class="container">
+        <div class="card">
+                <h4 class="card-header text-center text-white" style="background-color: #343a40!important;">Welcome,{{ employeePostData.fname }} {{ employeePostData.lname }} </h4>
+                <div class="card-body">
+                        <div class="row">
+                                <div class="col-md-2"></div>                            
+                                <div class="col-md-4">
+                                    <h4><b>Name:</b></h4>  
+                                </div> 
+                                <div class="col-md-6">
+                                        <h4><b>{{ employeePostData.fname }} {{ employeePostData.lname }}</b></h4>
+                                </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <h4><b>Date of Birth:</b></h4>  
+                                </div> 
+                                <div class="col-md-6">
+                                        <h4><b>{{ employeePostData.dob }}</b></h4>
+                                </div>
+                                
+                        </div>
+                        <br>
+                        <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <h4><b>Email:</b></h4>  
+                                </div> 
+                                <div class="col-md-6">
+                                        <h4><b>{{ employeePostData.email }}</b></h4>
+                                </div>
+                                
+                        </div>
+                        <br>
+                        <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <h4><b>Phone:</b></h4>  
+                                </div> 
+                                <div class="col-md-6">
+                                        <h4><b>{{ employeePostData.phone }}</b></h4>
+                                </div>
+                                
+                        </div>
+                        <br>
+                        <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <h4><b>Address:</b></h4>  
+                                </div> 
+                                <div class="col-md-6">
+                                        <h4><b>{{ employeePostData.address }}</b></h4>
+                                </div>
+                                
+                        </div>
+                    
+               
+                
+            <br>
+            <div class="text-center">
+                <button class="btn btn-success" (click)="onEditClick(employeePostData)">Edit</button>
+                <button class="btn btn-info" (click)="onView(employeePostData)">View Past Attendance</button>
+                <button class="btn btn-danger" (click)="logout()">Logout</button>
+            </div>
+            <br><br>
+            </div>
+            </div>
+            <br>
+            <div class="card">
+            <h4 class="card-header text-center text-white" [hidden]="flag1" style="background-color: #343a40!important;">Checkin Your Attendance</h4>
+            <h4 class="card-header text-center text-white" [hidden]="flag2" style="background-color: #343a40!important;">Checkout Your Attendance</h4>
+            <h4 class="card-header text-center text-white" [hidden]="flag3" style="background-color: #343a40!important;">Done</h4>
+                <div class="card-body">
+                        
+                        <br>
+                        <div class="row" [hidden]="flag1">
+                                <div class="col-md-4 text-center">
+                                    <h4><b>Work Status:</b></h4>  
+                                </div> 
+                                <div class="col-md-6">
+                                    <select [(ngModel)]="work" name="work" class="form-control">     
+                                            <option value="Present">Present</option>
+                                            <option value="Work from home">Work From Home</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2"></div>
+                        </div>
+                        <div class="text-center" [hidden]="flag2"><h4>You have marked your Attendance & now you can checkout</h4></div>
+                        <div class="text-center" [hidden]="flag3"><h4>You have marked your attendance successfully.</h4></div>
+                        <br>            
+                        <div class="row" [hidden]="flag1">
+                            <div class="col-md-4 text-center">
+                                <h4><b>Remark:</b></h4>  
+                            </div> 
+                            <div class="col-md-6">    
+                                <input class="form-control" placeholder="Enter Your Remark" type="text" [(ngModel)]="remark" name="remark" required>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <br>
+                        <div class="text-center" [hidden]="flag1">
+                          <button class="btn btn-success" (click)="onCheckIn(employeePostData.id,remark,work)">Mark Checkin</button>
+                        </div>
+                        <div class="text-center" [hidden]="flag2">
+                                <button class="btn btn-success" (click)="onCheckOut(employeePostData.id)">Mark Checkout</button>     
+                        </div>
+                        <br><br>
+            </div>
+            </div>
+            <br> 
+             
+       
 </div>

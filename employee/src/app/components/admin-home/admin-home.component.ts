@@ -10,27 +10,16 @@ import { Router } from '@angular/router';
 
 export class AdminHomeComponent implements OnInit {
   employees:any[];
-  adminPostData = {
-    id:"",
-    name:"",
-    email:""
-  }
+  
 
   constructor(private dataService:DataService, private router:Router) {
     const token = JSON.parse(localStorage.getItem('isAdmin'));
     if(token == null){
-      this.router.navigateByUrl('/admin');
+      this.router.navigateByUrl('/admin',);
     }
     this.dataService.checkAdminLoggedIn(token.data).subscribe(employees=>{
       this.employees = employees;
-      console.log(this.employees);
     });
-
-    this.dataService.getAdminDetails(token.data).subscribe(adminDetails=>{
-      this.adminPostData = adminDetails;
-    });
-   
-    
     
    }
 
@@ -50,19 +39,13 @@ export class AdminHomeComponent implements OnInit {
   }
 
 
-  logout(){
-    localStorage.clear();
-    this.router.navigateByUrl('/admin');
+
+  onViewClick(empId){
+    this.router.navigate(['/viewAttendance',empId]);
     
-  }
-
-  onViewClick(empid){
-    console.log(empid);
-
   }
   
   onEditClick(employee){
-    localStorage.setItem('isEditEmployee',JSON.stringify(employee));
-    this.router.navigateByUrl('/editEmployee'); 
+    this.router.navigate(['/editEmployee',employee._id]); 
   }
 }

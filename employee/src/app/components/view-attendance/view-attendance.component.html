@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="main">       
+            <div class="well">
+                    <div class="card mb-4 use">
+                            <div class="card-header text-center text-white" style="background-color: #343a40!important;">
+                              <i class="fas fa-table"></i>
+                              <h4>Attendance History</h4>
+                    </div>
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                  <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Check In Time</th>
+                                        <th>Check Out Time</th>
+                                        <th>Status</th>
+                                        <th>Remark</th>
+                                        <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tfoot>
+                                    <tr>
+                                      <th>Date</th>
+                                      <th>Check In Time</th>
+                                      <th>Check Out Time</th>
+                                      <th>Status</th>
+                                      <th>Remark</th>
+                                      <th>Action</th>
+                                    </tr>
+                                  </tfoot>
+                                  
+                                  <tbody>
+                                    <tr *ngFor="let attendance of attendances">
+                                      <td><br><b>{{ attendance.checkInDate }}</b></td>
+                                      <td><br><b>{{attendance.checkInTime}}</b> at {{attendance.checkInLocation}}</td>
+                                      <td><br><b>{{attendance.checkOutTime}}</b> at {{attendance.checkOutLocation}}</td>
+                                      <td><br>{{ attendance.status }}</td>
+                                      <td><br>{{ attendance.remark }}</td>
+                                      <td>
+                                          <br>
+                                          <button class="btn btn-success btn-sm btn-block" (click)="onEditClick()">Edit Attendance</button> 
+                                          
+                                     </td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                        </div>
+                        </div>
+                        </div>
+                
+                
+            </div>
+        
+        </div>
+     

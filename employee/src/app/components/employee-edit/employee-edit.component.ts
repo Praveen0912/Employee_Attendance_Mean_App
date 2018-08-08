@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router} from '@angular/router';
 @Component({
   selector: 'app-employee-edit',
   templateUrl: './employee-edit.component.html',
   styleUrls: ['./employee-edit.component.css']
 })
 export class EmployeeEditComponent implements OnInit {
+  empId :any;
   employee={
     id:'',
     email:'',
@@ -20,20 +21,25 @@ export class EmployeeEditComponent implements OnInit {
   temp={
     password:''
   }
-  constructor(private dataService:DataService, private router:Router) { 
-    const editEmployee = JSON.parse(localStorage.getItem('isEditEmployee'));
-    if(editEmployee == null){
-      this.router.navigateByUrl('/adminHome');
+  constructor(private dataService:DataService, private router:Router, private route :ActivatedRoute) { 
+    const token = JSON.parse(localStorage.getItem('isAdmin'));
+    if(token == null){
+      this.router.navigateByUrl('/admin',);
     }
-    this.employee.id =editEmployee._id;
-    this.employee.email =editEmployee.email;
-    this.employee.fname =editEmployee.fname;
-    this.employee.lname =editEmployee.lname;
-    this.employee.dob =editEmployee.dob;
-    this.employee.address =editEmployee.address;
-    this.employee.phone =editEmployee.phone;
-  }
-
+     this.route.params.subscribe( params =>{ 
+      this.dataService.getEmployeeToEdit(token.data, params.empId).subscribe(employeeDetails=>{
+        this.employee.id = employeeDetails._id;
+        this.employee.fname = employeeDetails.fname;
+        this.employee.lname = employeeDetails.lname;
+        this.employee.email = employeeDetails.email;
+        this.employee.dob = employeeDetails.dob;
+        this.employee.phone = employeeDetails.phone; 
+        this.employee.address = employeeDetails.address;
+      });
+     });
+      
+    }
+  
   ngOnInit() {
   }
 
