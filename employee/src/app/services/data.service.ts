@@ -141,5 +141,16 @@ export class DataService {
       return this.http.post(apiUrl, body, { headers: headers })
       .pipe(map((response: any) =>  response.json()));
     }
+
+    changePassword(token, data): Observable<any>{
+      var apiUrl =this.rootUrl+'api/changepwd'; 
+      const headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer '+token
+      });
+      return this.http.post(apiUrl, data, { headers: headers })
+      .pipe(map((response: any) =>  response.json()));
+    }
+
   
 }

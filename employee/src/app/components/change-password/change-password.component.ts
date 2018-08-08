@@ -40,7 +40,36 @@ export class ChangePasswordComponent implements OnInit {
     var cpass = this.temp.ncpassword;
     if(this.user.password !='' && this.user.npassword !='' && this.temp.ncpassword != ''){
       if(this.user.npassword == cpass){
-        
+        const token1 = JSON.parse(localStorage.getItem('isAdmin'));
+        const token2 = JSON.parse(localStorage.getItem('isEmployee'));
+        if(token1 == null){
+           var data ={
+             id:this.id,
+             flag:"e",
+             password:this.user.password,
+             npassword:this.user.npassword
+           };
+          this.dataService.changePassword(token2.data, data).subscribe(signal=>{
+            if(signal == true){
+              alert("password changed");
+              this.router.navigateByUrl('/employeeHome');
+            }
+            else{
+              alert(signal.message);
+            }  
+          });   
+        } 
+        if(token2 == null){
+          var data ={
+            id:this.id,
+            flag:"a",
+            password:this.user.password,
+            npassword:this.user.npassword
+          };
+          this.dataService.changePassword(token1.data, data).subscribe(signal=>{
+            alert("password changed");
+          });
+        }
       }
       else{
         alert("mismatch confirm password");
