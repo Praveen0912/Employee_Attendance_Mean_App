@@ -113,8 +113,14 @@ export class EmployeehomeComponent implements OnInit {
 
   logout(){
     localStorage.clear();
-    this.router.navigateByUrl('/employee');
-    
+    this.router.navigateByUrl('/employee');   
+  }
+
+  onView(empId){
+    this.router.navigate(['/employeeHome',empId]);
+  }
+  onPasswordChange(empId){
+    console.log(empId);
   }
   
   onCheckIn(id, remark, work){

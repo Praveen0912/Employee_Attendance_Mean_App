@@ -16,16 +16,18 @@ import { EmployeehomeComponent } from './components/employeehome/employeehome.co
 import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
 import { ViewAttendanceComponent } from './components/view-attendance/view-attendance.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
+import { ViewAttendanceEmpComponent } from './components/view-attendance-emp/view-attendance-emp.component';
 
 const appRoutes: Routes = [
   {path:'', component:DashboardComponent},
   {path:'admin', component:AdminloginComponent},
   {path:'adminHome',component:AdminHomeComponent},
+  {path:'newEmployee',component:NewEmployeeComponent},
   {path:'editEmployee/:empId',component:EmployeeEditComponent},
   {path:'viewAttendance/:empId', component:ViewAttendanceComponent},
   {path:'employee', component:EmployeeloginComponent},
   {path:'employeeHome',component:EmployeehomeComponent},
-  {path:'newEmployee',component:NewEmployeeComponent},
+  {path:'employeeHome/:empId',component:ViewAttendanceEmpComponent},
   {path:'**',component:PageNotFoundComponent}
 ];
 
@@ -43,6 +45,7 @@ const appRoutes: Routes = [
     EmployeeEditComponent,
     ViewAttendanceComponent,
     AdminSidebarComponent,
+    ViewAttendanceEmpComponent,
    
   ],
   imports: [
