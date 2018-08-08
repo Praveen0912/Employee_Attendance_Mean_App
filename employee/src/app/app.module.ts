@@ -17,6 +17,7 @@ import { EmployeeEditComponent } from './components/employee-edit/employee-edit.
 import { ViewAttendanceComponent } from './components/view-attendance/view-attendance.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
 import { ViewAttendanceEmpComponent } from './components/view-attendance-emp/view-attendance-emp.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const appRoutes: Routes = [
   {path:'', component:DashboardComponent},
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   {path:'employee', component:EmployeeloginComponent},
   {path:'employeeHome',component:EmployeehomeComponent},
   {path:'employeeHome/:empId',component:ViewAttendanceEmpComponent},
+  {path:'changePassword/:id',component:ChangePasswordComponent},
   {path:'**',component:PageNotFoundComponent}
 ];
 
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
     ViewAttendanceComponent,
     AdminSidebarComponent,
     ViewAttendanceEmpComponent,
+    ChangePasswordComponent,
    
   ],
   imports: [

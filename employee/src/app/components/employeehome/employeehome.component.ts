@@ -120,7 +120,7 @@ export class EmployeehomeComponent implements OnInit {
     this.router.navigate(['/employeeHome',empId]);
   }
   onPasswordChange(empId){
-    console.log(empId);
+    this.router.navigate(['/changePassword',empId]);
   }
   
   onCheckIn(id, remark, work){
