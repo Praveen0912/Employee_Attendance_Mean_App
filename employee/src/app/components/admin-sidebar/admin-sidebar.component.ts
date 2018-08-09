@@ -26,4 +26,8 @@ export class AdminSidebarComponent implements OnInit {
     localStorage.clear();
     this.router.navigateByUrl('/admin'); 
   }
+
+  changePassword(){
+    this.router.navigate(['/changePassword',this.adminPostData.id]);
+  }
 }

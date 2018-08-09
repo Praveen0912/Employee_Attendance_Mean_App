@@ -14,8 +14,8 @@
                                   <thead>
                                     <tr>
                                         <th class="text-center">Date(yyyy/mm/dd)</th>
-                                        <th class="text-center">Check In Time</th>
-                                        <th class="text-center">Check Out Time</th>
+                                        <th class="text-center">Check In Time(hh/mm/ss)</th>
+                                        <th class="text-center">Check Out Time(hh/mm/ss)</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Remark</th>
                                         <th class="text-center">Action</th>
@@ -24,8 +24,8 @@
                                   <tfoot>
                                     <tr>
                                       <th class="text-center">Date(yyyy/mm/dd)</th>
-                                      <th class="text-center">Check In Time</th>
-                                      <th class="text-center">Check Out Time</th>
+                                      <th class="text-center">Check In Time(hh/mm/ss)</th>
+                                      <th class="text-center">Check Out Time(hh/mm/ss)</th>
                                       <th class="text-center">Status</th>
                                       <th class="text-center">Remark</th>
                                       <th class="text-center">Action</th>
@@ -34,13 +34,15 @@
                                   
                                   <tbody>
                                     <tr *ngFor="let attendance of attendances">
-                                      <td><br><b>{{ attendance.checkInDate }}</b></td>
+                                      <td><br><b class="text-info">{{ attendance.checkInDate }}</b></td>
                                       <td><b class="text-info">{{attendance.checkInTime}}</b><br><b>At</b><br><b class="text-success">{{attendance.checkInLocation}}</b></td>
                                       <td><b class="text-info">{{attendance.checkOutTime}}</b><br><b>At</b><br><b class="text-success">{{attendance.checkOutLocation}}</b></td>
-                                      <td><br>{{ attendance.status }}</td>
-                                      <td><br>{{ attendance.remark }}</td>
+                                      <td [hidden]="!(attendance.status == 'Present')"><br><b class="text-success">{{ attendance.status }}</b></td>
+                                        <td [hidden]="!(attendance.status == 'Work from home')"><br><b class="text-warning">{{ attendance.status }}</b></td>
+                                        <td [hidden]="!(attendance.status == 'Absent')"><br><b class="text-danger">{{ attendance.status }}</b></td>
+                                      <td class="text-info"><br>{{ attendance.remark }}</td>
                                       <td>
-                                          <br>
+                                          <br><br>
                                           <button class="btn btn-success btn-sm btn-block" (click)="onEditClick()">Edit Attendance</button> 
                                           
                                      </td>

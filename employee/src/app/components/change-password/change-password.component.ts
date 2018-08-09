@@ -67,7 +67,13 @@ export class ChangePasswordComponent implements OnInit {
             npassword:this.user.npassword
           };
           this.dataService.changePassword(token1.data, data).subscribe(signal=>{
-            alert("password changed");
+            if(signal == true){
+              alert("password changed");
+              this.router.navigateByUrl('/adminHome');
+            }
+            else{
+              alert(signal.message);
+            }  
           });
         }
       }
