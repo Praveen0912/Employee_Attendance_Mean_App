@@ -3,7 +3,34 @@
 
 <div class="main">       
             <div class="well">
-                    <div class="card mb-4 use">
+                <div class="card">
+                    <h4 class="card-header text-center text-white" style="background-color: #343a40!important;">Details</h4>
+                    <div class="card-body">
+                            <div class="row">
+                                    <div class="col-md-2"></div>                            
+                                    <div class="col-md-4">
+                                        <h4><b>Name:</b></h4>  
+                                    </div> 
+                                    <div class="col-md-6">
+                                            <h4><b>{{ employeePostData.fname }} {{ employeePostData.lname }}</b></h4>
+                                    </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <h4><b>Email:</b></h4>  
+                                    </div> 
+                                    <div class="col-md-6">
+                                            <h4><b>{{ employeePostData.email }}</b></h4>
+                                    </div>
+                                    
+                            </div>
+                   </div> 
+                  </div>         
+                   <br>
+                   <div class="card mb-4 use">
                             <div class="card-header text-center text-white" style="background-color: #343a40!important;">
                               <i class="fas fa-table"></i>
                               <h4>Attendance History</h4>
@@ -38,11 +65,11 @@
                                       <td><b class="text-info">{{attendance.checkInTime}}</b><br><b>At</b><br><b class="text-success">{{attendance.checkInLocation}}</b></td>
                                       <td><b class="text-info">{{attendance.checkOutTime}}</b><br><b>At</b><br><b class="text-success">{{attendance.checkOutLocation}}</b></td>
                                       <td [hidden]="!(attendance.status == 'Present')"><br><b class="text-success">{{ attendance.status }}</b></td>
-                                        <td [hidden]="!(attendance.status == 'Work from home')"><br><b class="text-warning">{{ attendance.status }}</b></td>
-                                        <td [hidden]="!(attendance.status == 'Absent')"><br><b class="text-danger">{{ attendance.status }}</b></td>
+                                      <td [hidden]="!(attendance.status == 'Work from home')"><br><b class="text-warning">{{ attendance.status }}</b></td>
+                                      <td [hidden]="!(attendance.status == 'Absent')"><br><b class="text-danger">{{ attendance.status }}</b></td>
                                       <td class="text-info"><br>{{ attendance.remark }}</td>
                                       <td>
-                                          <br><br>
+                                          <br>
                                           <button class="btn btn-success btn-sm btn-block" (click)="onEditClick()">Edit Attendance</button> 
                                           
                                      </td>

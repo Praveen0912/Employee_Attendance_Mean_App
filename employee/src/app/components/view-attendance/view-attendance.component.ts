@@ -8,6 +8,15 @@ import { ActivatedRoute,Router } from '@angular/router';
 })
 export class ViewAttendanceComponent implements OnInit {
   attendances:any[];
+  employeePostData = {
+    id: "",
+    lname: "",
+    fname:"",
+    dob: "",
+    email: "",
+    phone: "",
+    address: ""                                         
+  };
   constructor(private dataService:DataService, private router:Router, private route :ActivatedRoute) {
     const token = JSON.parse(localStorage.getItem('isAdmin'));
     if(token == null){
@@ -17,6 +26,9 @@ export class ViewAttendanceComponent implements OnInit {
     this.route.params.subscribe( params =>{
       this.dataService.viewEmployeeAttendance(token.data, params.empId).subscribe(attendance=>{
         this.attendances = attendance;
+      });
+      this.dataService.getEmployeeToEdit(token.data, params.empId).subscribe(employeeDetails=>{
+        this.employeePostData = employeeDetails;
       });
     });
     

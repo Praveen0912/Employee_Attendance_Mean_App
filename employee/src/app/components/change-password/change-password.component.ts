@@ -51,7 +51,7 @@ export class ChangePasswordComponent implements OnInit {
            };
           this.dataService.changePassword(token2.data, data).subscribe(signal=>{
             if(signal == true){
-              alert("password changed");
+              
               this.router.navigateByUrl('/employeeHome');
             }
             else{
@@ -68,7 +68,7 @@ export class ChangePasswordComponent implements OnInit {
           };
           this.dataService.changePassword(token1.data, data).subscribe(signal=>{
             if(signal == true){
-              alert("password changed");
+              alert("Your password has been changed");
               this.router.navigateByUrl('/adminHome');
             }
             else{

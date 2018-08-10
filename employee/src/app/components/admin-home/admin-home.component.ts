@@ -29,11 +29,11 @@ export class AdminHomeComponent implements OnInit {
   onDeleteClick(id){
     const token = JSON.parse(localStorage.getItem('isAdmin'));
     this.dataService.deleteEmployee(id, token.data).subscribe(res =>{
-      for(let i = 0;i < this.employees.length;i++){
+     for(let i = 0;i < this.employees.length;i++){
        if(this.employees[i]._id == id){
           this.employees.splice(i,1);
         }
-      }
+    }
     });
     
   }

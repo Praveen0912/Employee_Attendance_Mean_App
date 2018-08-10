@@ -8,7 +8,7 @@
                               <h4>Employee List</h4>
                     </div>
                             <div class="card-body">
-                              <div class="table-responsive">
+                              <div class="table-responsive text-center">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                   <thead>
                                     <tr>
@@ -39,10 +39,28 @@
                                       <td class="text-info"><br>{{ employee.address }}</td>
                                       <td class="text-info"><br>{{ employee.phone }}</td>
                                       <td>
-                                          <button class="btn btn-warning btn-sm btn-block" (click)="onDeleteClick(employee._id)">Delete</button>
-                                          <button class="btn btn-secondary btn-sm btn-block" (click)="onViewClick(employee._id)">View attendance</button>
+                                          <button class="btn btn-warning btn-sm btn-block " data-toggle="modal" href="#myModal">Delete</button>
+                                          <!-- Modal HTML -->
+                                            <div id="myModal" class="modal fade">
+                                                <div class="modal-dialog modal-confirm">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">			
+                                                      <h4 class="modal-title">Confirmation</h4>	
+                                                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      <p>Are you sure you want to delete your employee? This action cannot be undone and you will be unable to recover any data.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                                      <button class="btn btn-danger"  data-dismiss="modal" (click)="onDeleteClick(employee._id)">Yes, delete it!</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div> 
+                                          <button class="btn btn-secondary btn-sm btn-block top" (click)="onViewClick(employee._id)">View attendance</button>
                                           <button class="btn btn-success btn-sm btn-block" (click)="onEditClick(employee)">Edit</button> 
-                                          
+                                                                                    
                                      </td>
                                     </tr>
                                   </tbody>
