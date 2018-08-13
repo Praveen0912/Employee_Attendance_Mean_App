@@ -506,7 +506,7 @@ module.exports = function(app) {
                     res.json({message: 'fetchingError'});
                 }
                 if(attendance1 != null){
-                res.json({messgage: false});
+                res.json({message: false});
                 }
                 if(attendance1 == null){
                     Attendance.getCheckIn(date, data.empId, function(err,attendance2){

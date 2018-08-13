@@ -43,6 +43,7 @@ export class EmployeehomeComponent implements OnInit {
         else if(signal.message == undefined){
           this.employeePostData = signal;
           this.dataService.attendanceCheckCompletetion(token.data, signal.id).subscribe(flag=>{
+            console.log(flag);
             if(flag.message == 'loginError' || flag.message == 'headerUndefined'){
               localStorage.clear();
               alert("Login Timeout");

@@ -41,7 +41,7 @@ export class ViewAttendanceComponent implements OnInit {
                 this.router.navigateByUrl('/admin',); 
               }
               else if(attendance.message == 'fetchingError'){
-                alert("Attendance Fetching Error");
+                alert("No Attendance Found");
               }
               else if(attendance.message == undefined){
                 this.attendances = attendance.reverse();

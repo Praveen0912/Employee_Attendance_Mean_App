@@ -32,7 +32,7 @@ export class ViewAttendanceEmpComponent implements OnInit {
                 this.router.navigateByUrl('/employee'); 
               }
               else if(attendance.message == 'fetchingError'){
-                alert("Attendance Fetching Error");
+                alert("No Attendance Found");
                 this.router.navigateByUrl('/employee/home');
               }
               else if(attendance.message == undefined){
