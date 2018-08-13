@@ -5,10 +5,17 @@
                     <div class="card mb-4 use">
                             <div class="card-header text-center text-white" style="background-color: #343a40!important;">
                               <i class="fas fa-table"></i>
-                              <h4>Attendance History</h4>
+                              <h4 [hidden]="!flag" >Attendance History(Last 30 days)</h4>
+                              <h4 [hidden]="flag" >Full Attendance History</h4>
                     </div>
                             <div class="card-body">
                               <div class="table-responsive text-center">
+                                  <br>
+                                  <div class="text-center">
+                                    <button class="btn btn-info" (click)="fullHistory()" [hidden]="!flag">View Full Attendance</button>
+                                    <button class="btn btn-success" (click)="monthHistory()" [hidden]="flag">View Lastest Attendance</button>
+                                  </div>
+                                  <br>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                   <thead>
                                     <tr>
@@ -32,7 +39,16 @@
                                   </tfoot>
                                   
                                   <tbody>
-                                    <tr *ngFor="let attendance of attendances">
+                                    <tr *ngFor="let attendance of attendances | slice:0:30" [hidden]="!flag">
+                                        <td><br><b class="text-info">{{ attendance.checkInDate }}</b></td>
+                                        <td><b class="text-info">{{attendance.checkInTime}}</b><br><b>At</b><br><b class="text-success">{{attendance.checkInLocation}}</b></td>
+                                        <td><b class="text-info">{{attendance.checkOutTime}}</b><br><b>At</b><br><b class="text-success">{{attendance.checkOutLocation}}</b></td>
+                                        <td [hidden]="!(attendance.status == 'Present')"><br><b class="text-success">{{ attendance.status }}</b></td>
+                                        <td [hidden]="!(attendance.status == 'Work from home')"><br><b class="text-warning">{{ attendance.status }}</b></td>
+                                        <td [hidden]="!(attendance.status == 'Absent')"><br><b class="text-danger">{{ attendance.status }}</b></td>     
+                                        <td class="text-info"><br>{{ attendance.remark }}</td>
+                                    </tr>
+                                    <tr *ngFor="let attendance of attendances" [hidden]="flag">
                                         <td><br><b class="text-info">{{ attendance.checkInDate }}</b></td>
                                         <td><b class="text-info">{{attendance.checkInTime}}</b><br><b>At</b><br><b class="text-success">{{attendance.checkInLocation}}</b></td>
                                         <td><b class="text-info">{{attendance.checkOutTime}}</b><br><b>At</b><br><b class="text-success">{{attendance.checkOutLocation}}</b></td>

@@ -24,15 +24,63 @@ export class ChangePasswordComponent implements OnInit {
       if(token2 == null){
         this.router.navigateByUrl('/');
       }
+      else if(token2 != null){
+        this.dataService.checkEmployeeLoggedIn(token2.data).subscribe(signal=>{
+          if(signal.message == 'loginError' || signal.message == 'headerUndefined'){
+            localStorage.clear();
+            alert("Login Timeout");
+            this.router.navigateByUrl('/employee'); 
+          }
+          else if(signal.message == undefined){
+            this.route.params.subscribe(params=>{
+              this.id = params.id;
+              this.dataService.checkPsdEmployee(token2.data, this.id).subscribe(signal=>{
+                 if(signal.message == 'loginError' || signal.message == 'headerUndefined'){
+                  localStorage.clear();
+                  alert("Login Timeout");
+                  this.router.navigateByUrl('/employee');
+                 }
+                 else if(signal.message == 'fetchingError'){
+                   alert('Unable to make action');
+                   this.router.navigateByUrl('/employee/home');
+                 }
+              });
+            });
+          }
+        });  
+      }
     }
     if(token2 == null){
       if(token1 == null){
         this.router.navigateByUrl('/');
       }
+      else if(token1 != null){
+        this.dataService.getAdminDetails(token1.data).subscribe(signal=>{
+          if(signal.message == 'loginError' || signal.message == 'headerUndefined'){
+            localStorage.clear();
+            alert("Login Timeout");
+            this.router.navigateByUrl('/admin'); 
+          }
+          else if(signal.message == undefined){
+            this.route.params.subscribe(params=>{
+              this.id = params.id;
+              this.dataService.checkPsdAdmin(token1.data, this.id).subscribe(signal=>{
+                if(signal.message == 'loginError' || signal.message == 'headerUndefined'){
+                  localStorage.clear();
+                  alert("Login Timeout");
+                  this.router.navigateByUrl('/admin');
+                 }
+                 else if(signal.message == 'fetchingError'){
+                   alert('Unable to make action');
+                   this.router.navigateByUrl('/admin/home');
+                 }
+              });
+            });
+          }
+        });  
+      }
     }
-    this.route.params.subscribe(params=>{
-      this.id = params.id;
-    });
+    
   }
 
   ngOnInit() {
@@ -55,7 +103,12 @@ export class ChangePasswordComponent implements OnInit {
               alert("Your password has been changed");
               this.router.navigateByUrl('/employee/home');
             }
-            else{
+            if(signal.message == "loginError" || signal.message == 'headerUndefined'){
+              localStorage.clear();
+              alert('Login Timeout');
+              this.router.navigateByUrl('/employee');
+            }
+            else if(signal.message == 'fetchingError' || signal.message == 'You entered wrong old password' || signal.message == 'noUser'){
               alert(signal.message);
             }  
           });   
@@ -73,7 +126,12 @@ export class ChangePasswordComponent implements OnInit {
              alert("Your password has been changed");
              this.router.navigateByUrl('/admin/home');
             }
-            else{
+            if(signal.message == "loginError" || signal.message == 'headerUndefined'){
+              localStorage.clear();
+              alert('Login Timeout');
+              this.router.navigateByUrl('/admin');
+            }
+            else if(signal.message == 'fetchingError' || signal.message == 'You entered wrong old password' || signal.message == 'noUser'){
               alert(signal.message);
             }  
           });

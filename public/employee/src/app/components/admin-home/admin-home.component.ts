@@ -16,13 +16,15 @@ export class AdminHomeComponent implements OnInit {
       this.router.navigateByUrl('/admin',);
     }
     
-    else{
+    else if(token != null){
       this.dataService.getAdminDetails(token.data).subscribe(signal=>{
         if(signal.message == 'loginError' || signal.message == 'headerUndefined'){
           localStorage.clear();
-          this.router.navigateByUrl('/admin',); 
+          alert("Login Timeout");
+          this.router.navigateByUrl('/admin'); 
         }
-        else{
+  
+        else if(signal.message == undefined){
           this.dataService.checkAdminLoggedIn(token.data).subscribe(employees=>{
               if(employees.message != undefined){
                 alert(employees.message);
@@ -40,11 +42,21 @@ export class AdminHomeComponent implements OnInit {
   onDeleteClick(id){
     const token = JSON.parse(localStorage.getItem('isAdmin'));
     this.dataService.deleteEmployee(id, token.data).subscribe(res =>{
+      if(res.message == 'loginError' || res.message == 'headerUndefined'){
+        localStorage.clear();
+        alert("Login Timeout");
+        this.router.navigateByUrl('/admin',); 
+      }
+      else if(res.message == "fetchingError"){
+        alert("There is an error in fetching data")
+      }
+      else if(res.message == true){
       for(let i = 0;i < this.employees.length;i++){
         if(this.employees[i]._id == id){
             this.employees.splice(i,1);
           }
       }
+    }
     });
     
   }

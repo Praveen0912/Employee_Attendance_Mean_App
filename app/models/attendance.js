@@ -62,7 +62,7 @@ module.exports.getCheckIn = function(date, id, callback){
 module.exports.getCheckOut = function(date, id, callback){
     var query = {empId: id,
                  checkInDate: date,
-                 checkOutTime:"Yet to be Done" 
+                 checkOutDate:"Yet to be Done" 
                 };
     Attendance.findOne(query, callback);
     
@@ -99,12 +99,27 @@ module.exports.markAbsent = function(date, time, data, callback){
 
     },callback);
 }
+
 module.exports.checkOutAttendance = function(date, time, data, callback, options){
     var query = { empId : data.empId, checkInDate : date};
     var update = {
         checkOutTime : time,
         checkOutLocation : data.location,
         checkOutDate: date
+    }
+    Attendance.findOneAndUpdate(query, update,options,callback);
+}
+
+module.exports.updateAttendance = function(data, callback, options){
+    var query = { _id : data._id};
+    var update = {
+        checkInTime: data.checkInTime,
+        checkInLocation: data.checkInLocation,
+        checkOutTime: data.checkOutTime,
+        checkOutLocation: data.checkOutLocation,
+        checkOutDate: data.checkOutDate,
+        status: data.status,
+        remark: data.remark
     }
     Attendance.findOneAndUpdate(query, update,options,callback);
 }

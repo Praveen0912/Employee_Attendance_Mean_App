@@ -38,19 +38,19 @@ export class AdminloginComponent implements OnInit {
     this.dataService.loginAdmin(this.admin).subscribe(tokenfromapi =>{
       this.token = tokenfromapi.data;
       if(tokenfromapi.message == 'noUser'){
-        alert("No user exists");
+        alert("Admin do not exist");
         
       }
-      if(tokenfromapi.message == 'wrongPassword'){
+      else if(tokenfromapi.message == 'wrongPassword'){
         alert("Wrong Password");
         
       }
-      if(tokenfromapi.message == 'networkError'){
+      else if(tokenfromapi.message == 'networkError'){
         alert("There is network problem");
         
       }
     
-      if(this.token != undefined){
+      else if(this.token != undefined){
        var adminLink = {
          "visibility":"hidden"
         } 

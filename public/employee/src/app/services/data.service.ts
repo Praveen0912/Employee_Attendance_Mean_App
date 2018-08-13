@@ -102,12 +102,43 @@ export class DataService {
       .pipe(map((response: any) =>  response.json()));
     }
 
-   
+    editAttendance(token, data): Observable<any> {
+      var apiUrl =this.rootUrl+'api/editAttendance'; 
+      const headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer '+token
+      });
+      return this.http.post(apiUrl, data, { headers:headers })
+      .pipe(map((response: any) =>  response.json()));
+    }
+
     //employee works
     loginEmployee(employee){
       return this.http.post(this.rootUrl+'api/employee_login',employee)
      .pipe(map((response: Response) =>  response.json()));
      }
+
+     checkPsdAdmin(token,id): Observable<any>{
+      var body ={_id : id};
+      var apiUrl =this.rootUrl+'api/checkPsdAdmin'; 
+      const headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer '+token
+      });
+      return this.http.post(apiUrl, body, { headers: headers })
+      .pipe(map((response: any) =>  response.json()));
+    }
+
+    checkPsdEmployee(token,id): Observable<any>{
+      var body ={_id : id};
+      var apiUrl =this.rootUrl+'api/checkPsdEmployee'; 
+      const headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer '+token
+      });
+      return this.http.post(apiUrl, body, { headers: headers })
+      .pipe(map((response: any) =>  response.json()));
+    }
 
      checkEmployeeLoggedIn(token): Observable<any> {
       var apiUrl =this.rootUrl+'api/employee_check'; 

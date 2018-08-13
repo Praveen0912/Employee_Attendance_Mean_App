@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');             //pull information from HTM
 var methodOverride = require('method-override');     //simulate DELETE and PUT
 var cors = require('cors');
 var path = require('path');
-var cron = require('cron');
 
 
 mongoose.connect(database.url);                                //connect to mongoose 
@@ -30,9 +29,9 @@ console.log("Running on port 8080");
 
 //Scheduler 
 Scheduler = require('./app/scheduler'); 
- var cronJob = cron.job("00 00 20 * * 1-6", Scheduler.schedule(function(err, status){
+ Scheduler.schedule(function(err, status){
    if(err){
     console.log("serverProblem")
    }
- })); 
-cronJob.start();
+ }); 
+

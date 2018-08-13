@@ -32,31 +32,45 @@ export class EmployeehomeComponent implements OnInit {
     if(token == null){
       this.router.navigateByUrl('/employee');
     }
-   
-    this.dataService.checkEmployeeLoggedIn(token.data).subscribe(employeeDetails=>{
-      this.employeePostData = employeeDetails;
-      this.dataService.attendanceCheckCompletetion(token.data, employeeDetails.id).subscribe(flag=>{
-        
-        if(flag == "noEntry"){
-          this.flag1 = false;
-          this.flag2 = true;  
-          this.flag3 = true;
-
+    else if(token != null){
+      this.dataService.checkEmployeeLoggedIn(token.data).subscribe(signal=>{
+        if(signal.message == 'loginError' || signal.message == 'headerUndefined'){
+          localStorage.clear();
+          alert("Login Timeout");
+          this.router.navigateByUrl('/employee'); 
         }
-        if(flag == "checkedIn"){
-          this.flag1 = true;
-          this.flag2 = true;  
-          this.flag3 = false; 
-        }
-        if(flag == false){
-          this.flag1 = true;
-          this.flag2 = false;  
-          this.flag3 = true;
-        }  
-     });
-     
-    });
-
+  
+        else if(signal.message == undefined){
+          this.employeePostData = signal;
+          this.dataService.attendanceCheckCompletetion(token.data, signal.id).subscribe(flag=>{
+            if(flag.message == 'loginError' || flag.message == 'headerUndefined'){
+              localStorage.clear();
+              alert("Login Timeout");
+              this.router.navigateByUrl('/employee');
+            }
+            else if(flag.message == 'fetchingError'){
+              alert("There is some error to fetch data");
+            }
+            else if(flag.message == "noEntry"){
+              this.flag1 = false;
+              this.flag2 = true;  
+              this.flag3 = true;
+    
+            }
+            else if(flag.message == "checkedIn"){
+              this.flag1 = true;
+              this.flag2 = true;  
+              this.flag3 = false; 
+            }
+            else if(flag.message == false){
+              this.flag1 = true;
+              this.flag2 = false;  
+              this.flag3 = true;
+            }  
+         });
+        }      
+      });
+    }
      
 
     
@@ -69,13 +83,13 @@ export class EmployeehomeComponent implements OnInit {
           error => {
               switch (error.code) {
                   case 1:
-                      console.log('Permission Denied');
+                      alert('Location Permission Denied');
                       break;
                   case 2:
-                      console.log('Position Unavailable');
+                      alert('Location Position Unavailable');
                       break;
                   case 3:
-                      console.log('Timeout');
+                      alert('Location Timeout');
                       break;
               }
           }
@@ -130,8 +144,22 @@ export class EmployeehomeComponent implements OnInit {
           if(EmployeehomeComponent.locationPosition != undefined){
             const token = JSON.parse(localStorage.getItem('isEmployee'));
             this.dataService.attendanceCheckIn(id, remark, work,EmployeehomeComponent.locationPosition,token.data).subscribe(details =>{
-                this.flag1 = details;
-                this.flag2 = !details;
+                
+                if(details.message == 'loginError' || details.message == 'headerUndefined'){
+                  localStorage.clear();
+                  alert("Login Timeout");
+                  this.router.navigateByUrl('/employee');
+                }
+                else if(details.message == 'fetchingError'){
+                  alert('There is some error to fetch data');
+                }
+                else if(details.message == 'exist'){
+                  alert('You have been marked already');
+                }
+                else if(details.message == true){
+                  this.flag1 = details.message;
+                  this.flag2 = !details.message;
+                }
             });
           }
           else{
@@ -146,8 +174,21 @@ export class EmployeehomeComponent implements OnInit {
         if(EmployeehomeComponent.locationPosition != undefined){
           const token = JSON.parse(localStorage.getItem('isEmployee'));
           this.dataService.attendanceCheckIn(id, remark, work,EmployeehomeComponent.locationPosition,token.data).subscribe(details =>{
-            this.flag1 = details;
-            this.flag2 = !details;
+              if(details.message == 'loginError' || details.message == 'headerUndefined'){
+                localStorage.clear();
+                alert("Login Timeout");
+                this.router.navigateByUrl('/employee');
+              }
+              else if(details.message == 'fetchingError'){
+                alert('There is some error to fetch data');
+              }
+              else if(details.message == 'exist'){
+                alert('You have been marked already');
+              }
+              else if(details.message == true){
+                this.flag1 = details.message;
+                this.flag2 = !details.message;
+              }
           });
         }
         else{
@@ -168,9 +209,19 @@ export class EmployeehomeComponent implements OnInit {
   if(EmployeehomeComponent.locationPosition != undefined){
     const token = JSON.parse(localStorage.getItem('isEmployee'));
     this.dataService.attendanceCheckOut(token.data, id, EmployeehomeComponent.locationPosition).subscribe(flag=> { 
-     this.flag1 = flag;
-     this.flag2 = flag;  
-     this.flag3 = !flag;
+      if(flag.message == 'loginError' || flag.message == 'headerUndefined'){
+        localStorage.clear();
+        alert("Login Timeout");
+        this.router.navigateByUrl('/employee');
+      }
+      else if(flag.message == 'fetchingError'){
+        alert('There is some error to fetch data');
+      }
+      else if(flag.message == true){
+          this.flag1 = flag.message;
+          this.flag2 = flag.message;  
+          this.flag3 = !flag.message;
+      } 
     });
   }
   else{

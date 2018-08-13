@@ -1,11 +1,13 @@
 
 //Scheduler Implementation
+var cron = require('cron');
 Employee = require('./models/employees');
 Attendance = require('./models/attendance'); 
 
 module.exports.schedule = function(callback){
 
-
+        
+    var cronJob = cron.job("00 00 20 * * 1-6",function(){  
         Employee.getEmployees(function(err, employees){
             if(err){
                 console.log({message:"serverProblem"})
@@ -74,5 +76,6 @@ module.exports.schedule = function(callback){
                 }
             }
         });
-
+    });
+    cronJob.start();
 }

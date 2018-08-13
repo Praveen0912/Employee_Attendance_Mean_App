@@ -24,6 +24,17 @@ export class NewEmployeeComponent implements OnInit {
     if(token == null){
       this.router.navigateByUrl('/admin');
     }
+    else{
+      this.dataService.getAdminDetails(token.data).subscribe(signal=>{
+        
+        if(signal.message == 'loginError' || signal.message == 'headerUndefined'){
+          localStorage.clear();
+          alert("Login Timeout");
+          this.router.navigateByUrl('/admin',); 
+        }
+     
+      });
+    }
    }
 
   ngOnInit() {
@@ -35,7 +46,19 @@ export class NewEmployeeComponent implements OnInit {
         if(this.employee.password == cpass){
           const token = JSON.parse(localStorage.getItem('isAdmin'));
           this.dataService.addEmployee(this.employee, token.data).subscribe(employee =>{
-            this.router.navigateByUrl('/admin/home');
+            if(employee.message == true){
+              alert("Employee Registered Successfully")             
+              this.router.navigateByUrl('/admin/home');
+            } 
+            if(employee.message == "loginError" || employee.message == 'headerUndefined'){
+              localStorage.clear();
+              alert("Login Timeout");
+              this.router.navigateByUrl('/admin',);
+            }
+            if(employee.message =='Failed to register'){
+              alert(employee.message);
+            }
+
           });
         }
         else{

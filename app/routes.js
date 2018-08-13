@@ -31,7 +31,7 @@ module.exports = function(app) {
                         name: admin.name,
                         flag: "1"
                     }, 'secretkey', {
-                        expiresIn: 86400 // expires in 24 hours
+                        expiresIn: 606900 // expires in 7 days
                     });
                     
                     res.status(200).send({ data: token });
@@ -71,6 +71,57 @@ module.exports = function(app) {
         
     });
 
+    //api for to stop blank change password page(Employee)
+    app.post('/api/checkPsdEmployee',verifyToken,(req, res)=>{
+        jwt.verify(req.token,'secretkey',function(err, authData){
+        if(err){
+            res.json({message: 'loginError'});
+
+        } else{ var id = req.body._id;
+                Employee.getEmployeeById(id, function(err, employees){
+                    if(err){
+                        res.json({message: 'fetchingError'});
+                       }
+                       else if(employees == null){
+                        res.json({message: 'fetchingError'});
+                       } 
+                       else if(employees !=null){
+                        res.json({message: true});
+                       } 
+                });
+        }
+        });
+        
+    });
+
+    //api for to stop blank change password page(Admin)
+    app.post('/api/checkPsdAdmin',verifyToken,(req, res)=>{
+        jwt.verify(req.token,'secretkey',function(err, authData){
+        if(err){
+            res.json({message: 'loginError'});
+
+        } else{
+            if(authData.flag == "1"){
+                var id = req.body._id; 
+                Admin.getAdminById(id, function(err, admin){
+                   if(err){
+                    res.json({message: 'fetchingError'});
+                   }
+                   else if(admin == null){
+                    res.json({message: 'fetchingError'});
+                   } 
+                   else if(admin !=null){
+                    res.json({message: true});
+                   }
+                });
+            }
+            else{
+                res.json({message: 'accessDenied'}); 
+            }
+        }
+        });
+        
+    });
 
     //Delete employee on admin portal
     app.post('/api/delete_employee',verifyToken,(req, res)=>{
@@ -128,10 +179,10 @@ module.exports = function(app) {
             employee = req.body;
             Employee.addEmployee(employee, function (err, employee) {
                 if (err) {
-                    res.json({message: 'registerEmployeeProblem'});
+                    res.json({message: 'Failed to register'});
                 }    
                 else{
-                    res.json({message:'employeeRegistered'});
+                    res.json({message: true});
                 }
                 
             });
@@ -158,7 +209,7 @@ module.exports = function(app) {
                         res.json({message: 'fetchingError'});
                     }
                     else{
-                        res.json(employee);
+                          res.json(employee);
                     }
                 });
             }
@@ -185,10 +236,10 @@ module.exports = function(app) {
                     else{
                         Employee.updateEmployee(employee,employee1.salt, employee1.hash, function (err, employee) {
                             if (err) {
-                                res.json({message: 'updateEmployeeProblem'});
+                                res.json({message: 'Failed to update employee'});
                             }
                             else{
-                                res.json({message: 'employeeUpdated'});
+                                res.json({message: true});
                             }
                             
                         });
@@ -230,6 +281,32 @@ module.exports = function(app) {
     
     });
 
+     //commit changes for  edited attendance
+     app.post('/api/editAttendance',verifyToken,(req, res)=>{
+        jwt.verify(req.token,'secretkey',function(err, authData){
+        if(err){
+        res.json({message: 'loginError'});
+
+        } else{ 
+            if(authData.flag == "1"){
+                var data = req.body;
+                Attendance.updateAttendance(data, function(err, attendance){
+                    if(err){
+                        res.json({message: 'fetchingError'});
+                    }
+                    else{
+                        res.json(attendance); 
+                    }
+                });
+            }
+            else{
+                res.json({message: 'accessDenied'});
+            } 
+        }
+    });
+    
+    });
+
     //fetch attendance for both admin as well as employee no flag check required
     app.post('/api/viewEmployeeAttendance',verifyToken,(req, res)=>{
         jwt.verify(req.token,'secretkey',function(err, authData){
@@ -244,7 +321,12 @@ module.exports = function(app) {
                     res.json({message: 'fetchingError'});
                 }
                 else{
-                    res.json(attendance); 
+                    if(attendance[0] != null){
+                      res.json(attendance); 
+                    }
+                    else if(attendance[0] == null){
+                        res.json({message:'fetchingError'});
+                    }
                 }
             });
         }
@@ -299,7 +381,7 @@ module.exports = function(app) {
                     // create a token
                     var token = jwt.sign({id: employee._id,fname: employee.fname, lname: employee.lname, dob:employee.dob, email: employee.email,
                         phone: employee.phone, address: employee.address,flag: "0"}, 'secretkey', {
-                        expiresIn: 86400 // expires in 24 hours
+                        expiresIn: 43200 // expires in 12 hours
                     });
                     
                     res.status(200).send({ data: token });
@@ -348,12 +430,12 @@ module.exports = function(app) {
             var part =  nd.toLocaleString().split(' ');
             var date =  part[0];
             var time = part[1];
-            Attendance.getCheckIn(date, data.empId, function(err,attendance1){
+            Attendance.getCheckIn(date, data.id, function(err,attendance1){
                 if(err){
                 res.json({message: 'fetchingError'});
                 }
                 if(attendance1 != null){
-                res.json({message: false});
+                res.json({message: 'exist'});
                 }
                 if(attendance1 == null){
                     Attendance.addAttendance(date, time, data ,function(err,attendance){
@@ -517,8 +599,8 @@ module.exports = function(app) {
     });
 
     app.get('*',function(req, res) {
-        res.sendfile('./public/index.html');
-        //load the single view file (angular will handlethe page changes on the the front - end)
+        res.sendfile('./public/employee/src/index.html');
+        //load the single view file (angular will handle the page changes on the the front - end)
     });
 
    

@@ -14,10 +14,14 @@ export class EmployeeloginComponent implements OnInit {
     password:''
   }
   constructor(private dataService:DataService, private router:Router) { 
-    const data = JSON.parse(localStorage.getItem('isEmployee'));
-    if(data != null){
-      this.router.navigateByUrl('/employee/home');
-    }
+    const token = JSON.parse(localStorage.getItem('isEmployee'));
+    if(token != null){
+      this.dataService.checkEmployeeLoggedIn(token.data).subscribe(signal=>{
+        if(signal.message != 'loginError' && signal.message != 'headerUndefined'){
+          this.router.navigateByUrl('/employee/home');
+        }
+      });
+  }
   }
 
   ngOnInit() {
@@ -28,23 +32,27 @@ export class EmployeeloginComponent implements OnInit {
     if(this.employee.email!='' && this.employee.password !=''){
       this.dataService.loginEmployee(this.employee).subscribe(tokenfromapi =>{
         this.token = tokenfromapi.data;
-        if(tokenfromapi.message == 'NoUser'){
+        if(tokenfromapi.message == 'noUser'){
           alert("Your are not an employee of this company");
           
         }
-        if(tokenfromapi.message == 'WrongPassword'){
+        else if(tokenfromapi.message == 'wrongPassword'){
           alert("Wrong Password");
           
         }
+        else if(tokenfromapi.message == 'networkError'){
+          alert("There is network problem");
+          
+        }
 
-        if(this.token != undefined){
-         var employeeLink = {
-           "visibility":"hidden"
-          } 
-         localStorage.clear();
-         localStorage.setItem('isEmployee',JSON.stringify(tokenfromapi));
-         localStorage.setItem('isEmployeeLink',JSON.stringify(employeeLink));
-         this.router.navigateByUrl('/employee/home');
+        else if(this.token != undefined){
+            var employeeLink = {
+              "visibility":"hidden"
+            } 
+            localStorage.clear();
+            localStorage.setItem('isEmployee',JSON.stringify(tokenfromapi));
+            localStorage.setItem('isEmployeeLink',JSON.stringify(employeeLink));
+            this.router.navigateByUrl('/employee/home');
         }
         
       });
@@ -55,12 +63,12 @@ export class EmployeeloginComponent implements OnInit {
          alert('Please Enter Password');
        }
      }
-     if(this.employee.password !=''){
+     else if(this.employee.password !=''){
        if(this.employee.email ==''){
         alert('Please Enter Your Email');
        }
      }
-     if(this.employee.email =='' && this.employee.password == ''){
+     else if(this.employee.email =='' && this.employee.password == ''){
        alert('Please Enter Email & Password');
      }
    }
