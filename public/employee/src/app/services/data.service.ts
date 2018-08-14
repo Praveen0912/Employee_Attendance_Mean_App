@@ -10,7 +10,7 @@ export class DataService {
 
   constructor(private http:Http) { }
   
-  rootUrl = "http://localhost:8080/";
+  rootUrl = 'http://localhost:8080/';
   
   //admin works
     loginAdmin(admin){
