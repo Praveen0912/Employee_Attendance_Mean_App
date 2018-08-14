@@ -40,6 +40,8 @@ export class AdminHomeComponent implements OnInit {
   }
 
   onDeleteClick(id){
+    var result = confirm("Are you sure to delete this employee data forever?");
+  if(result){
     const token = JSON.parse(localStorage.getItem('isAdmin'));
     this.dataService.deleteEmployee(id, token.data).subscribe(res =>{
       if(res.message == 'loginError' || res.message == 'headerUndefined'){
@@ -58,7 +60,7 @@ export class AdminHomeComponent implements OnInit {
       }
     }
     });
-    
+  }  
   }
 
 
