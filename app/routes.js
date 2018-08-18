@@ -599,9 +599,9 @@ module.exports = function(app) {
     });
 
     app.get('*',function(req, res) {
-        res.sendfile('./public/employee/src/index.html');
+        res.sendfile('./public/employee/dist/employee/index.html');
         //load the single view file (angular will handle the page changes on the the front - end)
-    });
+      });
 
    
 

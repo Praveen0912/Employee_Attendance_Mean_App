@@ -208,7 +208,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n.main {\r\n    margin-left: 260px; /* Same as the width of the sidenav */\r\n    font-size: 16px; /* Increased text to enable scrolling */\r\n    padding: 0px 10px;\r\n}\r\n.top{\r\n    margin-top: 7px;\r\n}\r\nbody {\r\n    font-family: 'Varela Round', sans-serif;\r\n}\r\n.modal-confirm {\t\t\r\n    color: #636363;\r\n    width: 550px;\r\n}\r\n.modal-confirm .modal-content {\r\n    padding: 20px;\r\n    border-radius: 5px;\r\n    border: none;        \r\n}\r\n.modal-confirm .modal-header {\r\n    padding: 0 15px;\r\n    border-bottom: none;   \r\n    position: relative;\r\n}\r\n.modal-confirm h4 {\r\n    display: inline-block;\r\n    font-size: 26px;\r\n}\r\n.modal-confirm .close {\r\n    position: absolute;\r\n    top: -5px;\r\n    right: -5px;\r\n}\r\n.modal-confirm .modal-body {\r\n    color: #999;\r\n}\r\n.modal-confirm .modal-footer {\r\n    background: #ecf0f1;\r\n    border-color: #e6eaec;\r\n    text-align: right;\r\n    margin: 0 -20px -20px;\r\n    border-radius: 0 0 5px 5px;\r\n}\r\n.modal-confirm .btn {\r\n    color: #fff;\r\n    border-radius: 4px;\r\n    transition: all 0.4s;\r\n    border: none;\r\n    padding: 8px 20px;\r\n    outline: none !important;\r\n}\r\n.modal-confirm .btn-info {\r\n    background: #b0c1c6;\r\n}\r\n.modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {\r\n    background: #92a9af;\r\n}\r\n.modal-confirm .btn-danger {\r\n    background: #f15e5e;\r\n}\r\n.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {\r\n    background: #ee3535;\r\n}\r\n.modal-confirm .modal-footer .btn + .btn {\r\n    margin-left: 10px;\r\n}\r\n.trigger-btn {\r\n    display: inline-block;\r\n    margin: 100px auto;\r\n}"
+module.exports = "\n.main {\n    margin-left: 260px; /* Same as the width of the sidenav */\n    font-size: 16px; /* Increased text to enable scrolling */\n    padding: 0px 10px;\n}\n.top{\n    margin-top: 7px;\n}\nbody {\n    font-family: 'Varela Round', sans-serif;\n}\n.modal-confirm {\t\t\n    color: #636363;\n    width: 550px;\n}\n.modal-confirm .modal-content {\n    padding: 20px;\n    border-radius: 5px;\n    border: none;        \n}\n.modal-confirm .modal-header {\n    padding: 0 15px;\n    border-bottom: none;   \n    position: relative;\n}\n.modal-confirm h4 {\n    display: inline-block;\n    font-size: 26px;\n}\n.modal-confirm .close {\n    position: absolute;\n    top: -5px;\n    right: -5px;\n}\n.modal-confirm .modal-body {\n    color: #999;\n}\n.modal-confirm .modal-footer {\n    background: #ecf0f1;\n    border-color: #e6eaec;\n    text-align: right;\n    margin: 0 -20px -20px;\n    border-radius: 0 0 5px 5px;\n}\n.modal-confirm .btn {\n    color: #fff;\n    border-radius: 4px;\n    transition: all 0.4s;\n    border: none;\n    padding: 8px 20px;\n    outline: none !important;\n}\n.modal-confirm .btn-info {\n    background: #b0c1c6;\n}\n.modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {\n    background: #92a9af;\n}\n.modal-confirm .btn-danger {\n    background: #f15e5e;\n}\n.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {\n    background: #ee3535;\n}\n.modal-confirm .modal-footer .btn + .btn {\n    margin-left: 10px;\n}\n.trigger-btn {\n    display: inline-block;\n    margin: 100px auto;\n}"
 
 /***/ }),
 
@@ -329,7 +329,7 @@ var AdminHomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".sidenav {\r\n    height: 100%;\r\n    width: 260px;\r\n    position: fixed;\r\n    z-index: 1;\r\n    top: 0;\r\n    left: 0;\r\n    overflow-x: hidden;\r\n    padding-top: 20px;\r\n    margin-top:60px;\r\n}\r\n\r\n.sidenav a {\r\n    padding: 6px 8px 6px 16px;\r\n    text-decoration: none;\r\n    font-size: 12px;\r\n    color: #818181;\r\n    display: block;\r\n}\r\n"
+module.exports = ".sidenav {\n    height: 100%;\n    width: 260px;\n    position: fixed;\n    z-index: 1;\n    top: 0;\n    left: 0;\n    overflow-x: hidden;\n    padding-top: 20px;\n    margin-top:60px;\n}\n\n.sidenav a {\n    padding: 6px 8px 6px 16px;\n    text-decoration: none;\n    font-size: 12px;\n    color: #818181;\n    display: block;\n}\n"
 
 /***/ }),
 
@@ -538,7 +538,7 @@ var AdminloginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\r\n    font-family: 'Varela Round', sans-serif;\r\n}\r\n.modal-confirm {\t\t\r\n    color: #636363;\r\n    width: 325px;\r\n}\r\n.modal-confirm .modal-content {\r\n    padding: 20px;\r\n    border-radius: 5px;\r\n    border: none;\r\n}\r\n.modal-confirm .modal-header {\r\n    border-bottom: none;   \r\n    position: relative;\r\n}\r\n.modal-confirm h4 {\r\n    text-align: center;\r\n    font-size: 26px;\r\n    margin: 30px 0 -15px;\r\n}\r\n.modal-confirm .form-control, .modal-confirm .btn {\r\n    min-height: 40px;\r\n    border-radius: 3px; \r\n}\r\n.modal-confirm .close {\r\n    position: absolute;\r\n    top: -5px;\r\n    right: -5px;\r\n}\r\n.modal-confirm .modal-footer {\r\n    border: none;\r\n    text-align: center;\r\n    border-radius: 5px;\r\n    font-size: 13px;\r\n}\r\n.modal-confirm .icon-box {\r\n    color: #fff;\t\t\r\n    position: absolute;\r\n    margin: 0 auto;\r\n    left: 0;\r\n    right: 0;\r\n    top: -70px;\r\n    width: 95px;\r\n    height: 95px;\r\n    border-radius: 50%;\r\n    z-index: 9;\r\n    background: #82ce34;\r\n    padding: 15px;\r\n    text-align: center;\r\n    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);\r\n}\r\n.modal-confirm .icon-box i {\r\n    font-size: 58px;\r\n    position: relative;\r\n    top: 3px;\r\n}\r\n.modal-confirm.modal-dialog {\r\n    margin-top: 80px;\r\n}\r\n.modal-confirm .btn {\r\n    color: #fff;\r\n    border-radius: 4px;\r\n    background: #82ce34;\r\n    text-decoration: none;\r\n    transition: all 0.4s;\r\n    line-height: normal;\r\n    border: none;\r\n}\r\n.modal-confirm .btn:hover, .modal-confirm .btn:focus {\r\n    background: #6fb32b;\r\n    outline: none;\r\n}"
+module.exports = "body {\n    font-family: 'Varela Round', sans-serif;\n}\n.modal-confirm {\t\t\n    color: #636363;\n    width: 325px;\n}\n.modal-confirm .modal-content {\n    padding: 20px;\n    border-radius: 5px;\n    border: none;\n}\n.modal-confirm .modal-header {\n    border-bottom: none;   \n    position: relative;\n}\n.modal-confirm h4 {\n    text-align: center;\n    font-size: 26px;\n    margin: 30px 0 -15px;\n}\n.modal-confirm .form-control, .modal-confirm .btn {\n    min-height: 40px;\n    border-radius: 3px; \n}\n.modal-confirm .close {\n    position: absolute;\n    top: -5px;\n    right: -5px;\n}\n.modal-confirm .modal-footer {\n    border: none;\n    text-align: center;\n    border-radius: 5px;\n    font-size: 13px;\n}\n.modal-confirm .icon-box {\n    color: #fff;\t\t\n    position: absolute;\n    margin: 0 auto;\n    left: 0;\n    right: 0;\n    top: -70px;\n    width: 95px;\n    height: 95px;\n    border-radius: 50%;\n    z-index: 9;\n    background: #82ce34;\n    padding: 15px;\n    text-align: center;\n    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);\n}\n.modal-confirm .icon-box i {\n    font-size: 58px;\n    position: relative;\n    top: 3px;\n}\n.modal-confirm.modal-dialog {\n    margin-top: 80px;\n}\n.modal-confirm .btn {\n    color: #fff;\n    border-radius: 4px;\n    background: #82ce34;\n    text-decoration: none;\n    transition: all 0.4s;\n    line-height: normal;\n    border: none;\n}\n.modal-confirm .btn:hover, .modal-confirm .btn:focus {\n    background: #6fb32b;\n    outline: none;\n}"
 
 /***/ }),
 
@@ -806,7 +806,7 @@ var DashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n.main {\r\n    margin-left: 260px; /* Same as the width of the sidenav */\r\n    font-size: 16px; /* Increased text to enable scrolling */\r\n    padding: 0px 10px;\r\n}\r\n\r\n"
+module.exports = "\n.main {\n    margin-left: 260px; /* Same as the width of the sidenav */\n    font-size: 16px; /* Increased text to enable scrolling */\n    padding: 0px 10px;\n}\n\n"
 
 /***/ }),
 
@@ -1013,7 +1013,7 @@ var EditAttendanceComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".main {\r\n    margin-left: 260px; /* Same as the width of the sidenav */\r\n    font-size: 16px; /* Increased text to enable scrolling */\r\n    padding: 0px 10px;\r\n}\r\n"
+module.exports = ".main {\n    margin-left: 260px; /* Same as the width of the sidenav */\n    font-size: 16px; /* Increased text to enable scrolling */\n    padding: 0px 10px;\n}\n"
 
 /***/ }),
 
@@ -1550,7 +1550,7 @@ var EmployeeloginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".use{\r\n  position: fixed;\r\n  background-color: #343a40!important;\r\n  width: 100%;\r\n  z-index: 1;\r\n}"
+module.exports = ".use{\n  position: fixed;\n  background-color: #343a40!important;\n  width: 100%;\n  z-index: 1;\n}"
 
 /***/ }),
 
@@ -1631,7 +1631,7 @@ var NavbarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".main {\r\n    margin-left: 260px; /* Same as the width of the sidenav */\r\n    font-size: 16px; /* Increased text to enable scrolling */\r\n    padding: 0px 10px;\r\n}\r\n"
+module.exports = ".main {\n    margin-left: 260px; /* Same as the width of the sidenav */\n    font-size: 16px; /* Increased text to enable scrolling */\n    padding: 0px 10px;\n}\n"
 
 /***/ }),
 
@@ -1927,7 +1927,7 @@ var ViewAttendanceEmpComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n.main {\r\n    margin-left: 260px; /* Same as the width of the sidenav */\r\n    font-size: 16px; /* Increased text to enable scrolling */\r\n    padding: 0px 10px;\r\n}\r\n\r\n"
+module.exports = "\n.main {\n    margin-left: 260px; /* Same as the width of the sidenav */\n    font-size: 16px; /* Increased text to enable scrolling */\n    padding: 0px 10px;\n}\n\n"
 
 /***/ }),
 
@@ -2087,7 +2087,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
-        this.rootUrl = "";
+        this.rootUrl = '';
     }
     //admin works
     DataService.prototype.loginAdmin = function (admin) {
@@ -2325,7 +2325,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\Employee\public\employee\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Projects\Employee_Attendance\public\employee\src\main.ts */"./src/main.ts");
 
 
 /***/ })

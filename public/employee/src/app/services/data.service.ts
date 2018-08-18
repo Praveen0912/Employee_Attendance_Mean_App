@@ -10,8 +10,8 @@ export class DataService {
 
   constructor(private http:Http) { }
   
-  rootUrl = 'http://localhost:8080/';
-  
+ // rootUrl = 'http://localhost:8080/';
+    rootUrl = '';
   //admin works
     loginAdmin(admin){
      return this.http.post(this.rootUrl+'api/admin_login',admin)

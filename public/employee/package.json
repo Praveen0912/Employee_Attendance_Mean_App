@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "postinstall": "ng build --aot -prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -12,13 +13,16 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^6.0.3",
+    "@angular/cli": "~6.0.8",
     "@angular/common": "^6.0.3",
     "@angular/compiler": "^6.0.3",
+    "@angular/compiler-cli": "^6.0.3",
     "@angular/core": "^6.0.3",
     "@angular/forms": "^6.0.3",
     "@angular/http": "^6.0.3",
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
+    "@angular/pwa": "^0.7.4",
     "@angular/router": "^6.0.3",
     "@types/jquery": "^3.3.5",
     "angular2-jwt": "^0.2.3",
@@ -29,6 +33,7 @@
     "model": "^6.0.1",
     "rxjs": "^6.2.2",
     "tether": "^1.4.4",
+    "typescript": "~2.7.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

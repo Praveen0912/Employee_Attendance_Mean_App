@@ -4,9 +4,9 @@
   "description": "simple employee management app",
   "main": "app.js",
   "scripts": {
-    "build": "ng build",
     "test": "echo \"Error:no test specified\" && exit 1",
     "start": "node app.js"
+
   },
   "dependencies": {
     "@types/googlemaps": "^3.30.11",
